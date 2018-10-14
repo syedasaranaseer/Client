@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main()
+{
+      int fileD, ValueR;
+      char buffer[16];
+      fileD = open("/tmp/fifoProgram", O_RDONLY);
+      ValueR = read(fileD, buffer, sizeof(buffer));
+      fflush(stdin);
+      write(1, buffer, sizeof(buffer));
+      close(fileD);
+      return 0;
+}
